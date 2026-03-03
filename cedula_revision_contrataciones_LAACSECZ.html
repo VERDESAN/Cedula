@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cédula de Revisión de Contrataciones - LAACSECZ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body { font-family: 'Inter', sans-serif; }
+
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; padding: 0; margin: 0; }
+            .container { 
+                max-width: 100%; 
+                width: 100%; 
+                margin: 0; 
+                box-shadow: none; 
+                border: none; 
+            }
+            .section-header { 
+                background-color: #1e293b !important; 
+                color: white !important; 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+            }
+            .table-head { 
+                background-color: #f1f5f9 !important; 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+            }
+            input[type="text"], textarea { 
+                border: none; 
+                border-bottom: 1px solid #ccc; 
+                background: transparent; 
+            }
+            tr { page-break-inside: avoid; }
+            .bg-slate-100 { background-color: white !important; }
+        }
+
+        .table-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px dashed #cbd5e1;
+            padding: 2px 4px;
+            font-size: 0.65rem;
+        }
+
+        .table-input:focus {
+            outline: none;
+            border-bottom: 1px solid #2563eb;
+            background: #f8fafc;
+        }
+
+        .section-header {
+            background-color: #1e293b;
+            color: white;
+            padding: 0.4rem 0.8rem;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .table-head {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 700;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .check-cell { width: 35px; text-align: center; }
+
+        tr:nth-child(even) { background-color: #fcfcfc; }
+
+        .sub-header {
+            background-color: #f1f5f9;
+            color: #1e293b;
+            font-weight: 800;
+            font-size: 0.65rem;
+            padding: 0.3rem 0.8rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-2 md:p-4">
+
+    <div class="max-w-6xl mx-auto bg-white shadow-2xl rounded-xl overflow-hidden container border border-slate-200">
+
+        <!-- HEADER -->
+        <div class="p-4 bg-white border-b border-slate-200">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
+                <div class="text-center md:text-left">
+                    <h1 class="text-lg font-extrabold text-slate-900 tracking-tight">CÉDULA DE REVISIÓN DE CONTRATACIONES</h1>
+                    <p class="text-blue-600 font-bold uppercase text-[9px]">Auditoría de Cumplimiento Legal (LAACSECZ)</p>
+                </div>
+                <button onclick="window.print()" class="no-print bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg shadow-md transition-all flex items-center gap-2 font-bold text-[10px] uppercase">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                    </svg>
+                    Imprimir / PDF
+                </button>
+            </div>
+
+            <!-- DATOS GENERALES -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-[9px]">
+                <div class="flex items-center gap-2">
+                    <label class="font-bold text-slate-700 uppercase whitespace-nowrap">Entidad:</label>
+                    <input type="text" class="table-input">
+                </div>
+                <div class="flex items-center gap-2">
+                    <label class="font-bold text-slate-700 uppercase whitespace-nowrap">Ejercicio:</label>
+                    <input type="text" class="table-input">
+                </div>
+                <div class="flex items-center gap-2">
+                    <label class="font-bold text-slate-700 uppercase whitespace-nowrap">Número de contrato / expediente:</label>
+                    <input type="text" class="table-input">
+                </div>
+                <div class="flex items-center gap-2">
+                    <label class="font-bold text-slate-700 uppercase whitespace-nowrap">Proveedor:</label>
+                    <input type="text" class="table-input">
+                </div>
+                <div class="flex items-center gap-2">
+                    <label class="font-bold text-slate-700 uppercase whitespace-nowrap">Monto contratado:</label>
+                    <input type="text" class="table-input">
+                </div>
+                <div class="flex items-center gap-3">
+                    <label class="font-bold text-slate-700 uppercase">Tipo de procedimiento:</label>
+                    <div class="flex gap-2">
+                        <label class="flex items-center"><input type="radio" name="ptype" class="w-3 h-3"><span class="ml-1">Licitación</span></label>
+                        <label class="flex items-center"><input type="radio" name="ptype" class="w-3 h-3"><span class="ml-1">Invitación a 3</span></label>
+                        <label class="flex items-center"><input type="radio" name="ptype" class="w-3 h-3"><span class="ml-1">Adjudicación Directa</span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN I -->
+        <div class="section-header">I. FUNDAMENTO DEL PROCEDIMIENTO (Art. 42, 43, 51, 52 LAACSECZ)</div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-[0.62rem] border-collapse">
+                <thead class="table-head">
+                    <tr>
+                        <th class="p-1 w-8 text-center border">No.</th>
+                        <th class="p-1 text-left border">Verificación</th>
+                        <th class="p-1 check-cell border">Sí</th>
+                        <th class="p-1 check-cell border">No</th>
+                        <th class="p-1 check-cell border">N/A</th>
+                        <th class="p-1 text-left border">Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    <tr><td class="p-1 text-center border">1</td><td class="p-1 border">El procedimiento corresponde al monto autorizado conforme a los límites legales.</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                    <tr><td class="p-1 text-center border">2</td><td class="p-1 border">Oficio de solicitud por parte de Área Usuaria</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(NUMERO DE OFICIO Y FECHA)"></td></tr>
+                    <tr><td class="p-1 text-center border">3</td><td class="p-1 border">Catálogo de Conceptos</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                    <tr><td class="p-1 text-center border">4</td><td class="p-1 border">Oficio de Administrador de contrato</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(NUMERO DE OFICIO Y FECHA)"></td></tr>
+                    <tr><td class="p-1 text-center border">5</td><td class="p-1 border">Oficio de asignación de partida presupuestal</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(NUMERO DE OFICIO Y FECHA)"></td></tr>
+                    <tr><td class="p-1 text-center border">6</td><td class="p-1 border">Estudio de mercado</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECCIÓN II -->
+        <div class="section-header">II. PADRÓN DE PROVEEDORES (Art. 12, 13, 14 LAACSECZ)</div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-[0.62rem] border-collapse">
+                <thead class="table-head">
+                    <tr>
+                        <th class="p-1 w-8 text-center border">No.</th>
+                        <th class="p-1 text-left border">Verificación</th>
+                        <th class="p-1 check-cell border">Sí</th>
+                        <th class="p-1 check-cell border">No</th>
+                        <th class="p-1 check-cell border">N/A</th>
+                        <th class="p-1 text-left border">Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    <tr><td class="p-1 text-center border">1</td><td class="p-1 border">Proveedor inscrito en el Padrón del Municipio</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(NUMERO DE REGISTRO, CLAVE SIIM)"></td></tr>
+                    <tr><td class="p-1 text-center border">2</td><td class="p-1 border">Actividad o giro acorde al objeto contratado</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                    <tr><td class="p-1 text-center border">3</td><td class="p-1 border">Certificado vigente a la firma del contrato</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(VIGENCIA DE CERTIFICADO)"></td></tr>
+                    <tr><td class="p-1 text-center border">4</td><td class="p-1 border">No se encuentra suspendido o inhabilitado</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECCIÓN III -->
+        <div class="section-header">III. COMITÉ DE ADQUISICIONES (Art. 20-25 LAACSECZ)</div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-[0.62rem] border-collapse">
+                <thead class="table-head">
+                    <tr>
+                        <th class="p-1 w-8 text-center border">No.</th>
+                        <th class="p-1 text-left border">Verificación</th>
+                        <th class="p-1 check-cell border">Sí</th>
+                        <th class="p-1 check-cell border">No</th>
+                        <th class="p-1 check-cell border">N/A</th>
+                        <th class="p-1 text-left border">Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    <tr><td class="p-1 text-center border">1</td><td class="p-1 border">Acta de integración vigente del Comité</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                    <tr><td class="p-1 text-center border">2</td><td class="p-1 border">Sesión debidamente convocada</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                    <tr><td class="p-1 text-center border">3</td><td class="p-1 border">Existencia de quórum legal</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                    <tr><td class="p-1 text-center border">4</td><td class="p-1 border">Acta firmada por integrantes</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                    <tr><td class="p-1 text-center border">5</td><td class="p-1 border">Dictamen de excepción a la licitación</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECCIÓN IV -->
+        <div class="section-header">IV. PROCEDIMIENTO DE CONTRATACIÓN</div>
+
+        <!-- A) LICITACIÓN PÚBLICA -->
+        <div class="sub-header">A) LICITACIÓN PÚBLICA (Art. 26-35 LAACSECZ)</div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-[0.62rem] border-collapse">
+                <thead class="table-head">
+                    <tr>
+                        <th class="p-1 w-8 text-center border">No.</th>
+                        <th class="p-1 text-left border">Verificación</th>
+                        <th class="p-1 check-cell border">Sí</th>
+                        <th class="p-1 check-cell border">No</th>
+                        <th class="p-1 check-cell border">N/A</th>
+                        <th class="p-1 text-left border">Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    <tr><td class="p-1 text-center border">1</td><td class="p-1 border">Convocatoria publicada conforme a ley</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHA Y PERIÓDICO)"></td></tr>
+                    <tr><td class="p-1 text-center border">2</td><td class="p-1 border">Plazos legales respetados</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                    <tr><td class="p-1 text-center border">3</td><td class="p-1 border">Bases</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHA DE BASES)"></td></tr>
+                    <tr><td class="p-1 text-center border">4</td><td class="p-1 border">Oficio invitación contraloría/usuario</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(OFICIO Y FECHA)"></td></tr>
+                    <tr><td class="p-1 text-center border">5</td><td class="p-1 border">Junta(s) de aclaraciones</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHA ACTA)"></td></tr>
+                    <tr><td class="p-1 text-center border">6</td><td class="p-1 border">Acta de apertura de propuestas</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHA ACTA)"></td></tr>
+                    <tr><td class="p-1 text-center border">7</td><td class="p-1 border">Dictamen técnico y económico</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHA DICTAMEN)"></td></tr>
+                    <tr><td class="p-1 text-center border">8</td><td class="p-1 border">Acta de fallo</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHA ACTA)"></td></tr>
+                    <tr><td class="p-1 text-center border">9</td><td class="p-1 border font-semibold">Propuestas de participantes</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(NOMBRES)"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- B) INVITACIÓN A TRES -->
+        <div class="sub-header">B) INVITACIÓN A TRES (Art. 36-42 LAACSECZ)</div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-[0.62rem] border-collapse">
+                <thead class="table-head">
+                    <tr>
+                        <th class="p-1 w-8 text-center border">No.</th>
+                        <th class="p-1 text-left border">Verificación</th>
+                        <th class="p-1 check-cell border">Sí</th>
+                        <th class="p-1 check-cell border">No</th>
+                        <th class="p-1 check-cell border">N/A</th>
+                        <th class="p-1 text-left border">Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    <tr><td class="p-1 text-center border">1</td><td class="p-1 border">Oficio invitación contraloría/usuario</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(OFICIO Y FECHA)"></td></tr>
+                    <tr><td class="p-1 text-center border">2</td><td class="p-1 border">Acuse de invitación a tres proveedores</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHAS)"></td></tr>
+                    <tr><td class="p-1 text-center border">3</td><td class="p-1 border">Bases</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHA)"></td></tr>
+                    <tr><td class="p-1 text-center border">4</td><td class="p-1 border">Junta(s) de aclaraciones</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHA ACTA)"></td></tr>
+                    <tr><td class="p-1 text-center border">5</td><td class="p-1 border">Acta de apertura de propuestas</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHA ACTA)"></td></tr>
+                    <tr><td class="p-1 text-center border">6</td><td class="p-1 border">Dictamen técnico y económico</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHA DICTAMEN)"></td></tr>
+                    <tr><td class="p-1 text-center border">7</td><td class="p-1 border">Acta de fallo</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHA ACTA)"></td></tr>
+                    <tr><td class="p-1 text-center border">8</td><td class="p-1 border">Propuestas de participantes</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(NOMBRES)"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- D) ADJUDICACIÓN DIRECTA -->
+        <div class="sub-header">D) ADJUDICACIÓN DIRECTA (Art. 43-52 LAACSECZ)</div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-[0.62rem] border-collapse">
+                <thead class="table-head">
+                    <tr>
+                        <th class="p-1 w-8 text-center border">No.</th>
+                        <th class="p-1 text-left border">Verificación</th>
+                        <th class="p-1 check-cell border">Sí</th>
+                        <th class="p-1 check-cell border">No</th>
+                        <th class="p-1 check-cell border">N/A</th>
+                        <th class="p-1 text-left border">Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    <tr><td class="p-1 text-center border">1</td><td class="p-1 border">Justificación fundada</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                    <tr><td class="p-1 text-center border">2</td><td class="p-1 border">Monto dentro de límite legal</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                    <tr><td class="p-1 text-center border">3</td><td class="p-1 border">Tres cotizaciones (cuando proceda)</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                    <tr><td class="p-1 text-center border">4</td><td class="p-1 border">Autorización correspondiente</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECCIÓN V -->
+        <div class="section-header">V. CONTRATO (Art. 53-60 LAACSECZ)</div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-[0.62rem] border-collapse">
+                <thead class="table-head">
+                    <tr>
+                        <th class="p-1 w-8 text-center border">No.</th>
+                        <th class="p-1 text-left border">Elemento contractual</th>
+                        <th class="p-1 check-cell border">Sí</th>
+                        <th class="p-1 check-cell border">No</th>
+                        <th class="p-1 check-cell border">N/A</th>
+                        <th class="p-1 text-left border">Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    <tr><td class="p-1 text-center border">1</td><td class="p-1 border">Objeto claramente definido</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(OBJETO)"></td></tr>
+                    <tr><td class="p-1 text-center border">2</td><td class="p-1 border">Declaración suficiencia presupuestal</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(NUMERO PARTIDA)"></td></tr>
+                    <tr><td class="p-1 text-center border">3</td><td class="p-1 border">Precio cierto y determinado</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(MONTO CONTRATACIÓN)"></td></tr>
+                    <tr><td class="p-1 text-center border">4</td><td class="p-1 border">Plazo y lugar de entrega</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(PLAZO Y LUGAR DE ENTREGA)"></td></tr>
+                    <tr><td class="p-1 text-center border">5</td><td class="p-1 border">Condiciones de pago</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(CONDICIONES DE PAGO)"></td></tr>
+                    <tr><td class="p-1 text-center border">6</td><td class="p-1 border">Anticipo ≤ 50% (si aplica)</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(CLAUSULA ANTICIPO)"></td></tr>
+                    <tr><td class="p-1 text-center border">7</td><td class="p-1 border">Garantía de cumplimiento</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(CLAUSULA GARANTÍA)"></td></tr>
+                    <tr><td class="p-1 text-center border">8</td><td class="p-1 border">Penas convencionales</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(CLAUSULA PENAS)"></td></tr>
+                    <tr><td class="p-1 text-center border">9</td><td class="p-1 border">Administrador de contrato</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(CLAUSULA ADMINISTRADOR DE CONTRATO)"></td></tr>
+                    <tr><td class="p-1 text-center border">10</td><td class="p-1 border font-semibold">Firma de servidor público competente</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(NOMBRES)"></td></tr>
+                    <tr><td class="p-1 text-center border">11</td><td class="p-1 border">Firma dentro del plazo legal</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHA CONTRATO)"></td></tr>
+                    <tr><td class="p-1 text-center border">12</td><td class="p-1 border">Firma administrador de contrato</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECCIÓN VI -->
+        <div class="section-header">VI. EJECUCIÓN Y CUMPLIMIENTO</div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-[0.62rem] border-collapse">
+                <thead class="table-head">
+                    <tr>
+                        <th class="p-1 w-8 text-center border">No.</th>
+                        <th class="p-1 text-left border">Verificación</th>
+                        <th class="p-1 check-cell border">Sí</th>
+                        <th class="p-1 check-cell border">No</th>
+                        <th class="p-1 check-cell border">N/A</th>
+                        <th class="p-1 text-left border">Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    <tr><td class="p-1 text-center border">1</td><td class="p-1 border">Actas de entrega-recepción</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FECHA ACTA)"></td></tr>
+                    <tr><td class="p-1 text-center border">2</td><td class="p-1 border">Evidencia de cumplimiento de contrato</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(FOTOS, BITÁCORA, ETC.)"></td></tr>
+                    <tr><td class="p-1 text-center border">3</td><td class="p-1 border">Oficio de remisión de fianza</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(OFICIO Y FECHA)"></td></tr>
+                    <tr><td class="p-1 text-center border">4</td><td class="p-1 border">Facturas validadas</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(NÚMEROS DE FACTURA)"></td></tr>
+                    <tr><td class="p-1 text-center border">5</td><td class="p-1 border">Aplicación de penas convencionales</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input"></td></tr>
+                    <tr><td class="p-1 text-center border">6</td><td class="p-1 border font-semibold">Convenios modificatorios</td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 text-center border"><input type="checkbox"></td><td class="p-1 border"><input type="text" class="table-input" placeholder="(NUMERO Y FECHA)"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CONCLUSIÓN -->
+        <div class="p-4 bg-slate-50 border-t">
+            <h3 class="font-bold text-slate-800 mb-2 text-[9px] uppercase tracking-wider">
+                VII. EVALUACIÓN Y DICTAMEN FINAL
+            </h3>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
+                <label class="flex items-center p-1.5 bg-white border rounded shadow-sm cursor-pointer no-print"><input type="radio" name="final" class="w-3 h-3"><span class="ml-1.5 font-bold text-green-700 text-[8px] uppercase">Completo</span></label>
+                <label class="flex items-center p-1.5 bg-white border rounded shadow-sm cursor-pointer no-print"><input type="radio" name="final" class="w-3 h-3"><span class="ml-1.5 font-bold text-yellow-600 text-[8px] uppercase">Sustancial</span></label>
+                <label class="flex items-center p-1.5 bg-white border rounded shadow-sm cursor-pointer no-print"><input type="radio" name="final" class="w-3 h-3"><span class="ml-1.5 font-bold text-orange-600 text-[8px] uppercase">Riesgo M.</span></label>
+                <label class="flex items-center p-1.5 bg-white border rounded shadow-sm cursor-pointer no-print"><input type="radio" name="final" class="w-3 h-3"><span class="ml-1.5 font-bold text-red-600 text-[8px] uppercase">Riesgo A.</span></label>
+            </div>
+            <textarea rows="2" class="w-full border rounded p-2 text-[10px] focus:ring-1 focus:ring-blue-500 outline-none shadow-inner" placeholder="Escriba las observaciones finales aquí..."></textarea>
+            <div class="grid grid-cols-2 gap-10 text-center pt-6">
+                <div><div class="h-10 border-b border-slate-900 mx-auto w-40 mb-1"></div><p class="text-[8px] font-bold uppercase text-slate-600">Auditor Responsable</p></div>
+                <div><div class="h-10 border-b border-slate-900 mx-auto w-40 mb-1"></div><p class="text-[8px] font-bold uppercase text-slate-600">Vo.Bo. Contraloría</p></div>
+            </div>
+        </div>
+    </div>
+    <p class="mt-2 text-center text-slate-400 text-[6px] no-print italic">Cédula generada bajo normativa LAACSECZ - Coahuila.</p>
+</body>
+</html>
